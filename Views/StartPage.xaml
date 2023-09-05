@@ -3,18 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfAppDotNet.Views"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartPage">
 
-    <Grid>
+    <Grid x:Name="global">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="PersonsGrid"
-              AutoGenerateColumns="False">
+        <DataGrid ItemsSource="{Binding PersonList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя"
                                 Binding="{Binding FirstName}"/>
@@ -24,19 +23,27 @@
                                 Binding="{Binding Birthday}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="1"
-            Orientation="Vertical"
-            HorizontalAlignment="Left"
-            Margin="10"
-            MinWidth="80">
-            <TextBlock Text="FirstName"/>
-            <TextBox x:Name="FirstNameTextBox"/>
-            <TextBlock Text="LastName"/>
-            <TextBox x:Name="LastNameTextBox"/>
-            <TextBlock Text="Birthday"/>
-            <TextBox x:Name="BirthdayTextBox"/>
-            <Button Content="AddPercon"
-                    Click="Button_Click_AddPerson"/>
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid HorizontalAlignment="Center" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Имя"/>
+                <Label Grid.Row="1" Content="Фамилия" />
+                <Label Grid.Row="2" Content="Дата рождения"/>
+                <TextBox Grid.Column="1" Text="{Binding Path=CreatedPerson.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Path=CreatedPerson.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker  Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Path=CreatedPerson.Birthday, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>           
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Width="200" Height="30" Content="Добавить нового" Command="{Binding AddCommand}"/>
+        </Grid>
     </Grid>
 </Page>

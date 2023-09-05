@@ -9,12 +9,68 @@ using System.Threading.Tasks;
 
 namespace WpfAppDotNet.Models
 {
-    public class Person
+    public class Person : INotifyPropertyChanged
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime Birthday { get; set; }
+        int _id;
+        string _firstName;
+        string _lastName;
+        DateTime _birthday;
+        public int Id 
+        {
+            get
+            { 
+                return _id;
+            } 
+            set 
+            { 
+                _id = value;
+                OnPropertyChanged("Id");
+            } 
+        }
+        public string FirstName
+        {
+            get
+            {
+                return _firstName;
+            }
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged("FirstName");
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                return _lastName;
+            }
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
+        public DateTime Birthday
+        {
+            get { return _birthday; }
+            set
+            {
+                _birthday = value;
+                OnPropertyChanged("Birthday");
+            }
+        }
+
+        #region INotifyPropertyChange
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+        #endregion
     }
     /*public class Person : INotifyPropertyChanged
     {
@@ -50,11 +106,7 @@ namespace WpfAppDotNet.Models
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        
     }*/
+
 }
