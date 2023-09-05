@@ -33,7 +33,6 @@ namespace WpfAppDotNet.Views
             ConnectDb.db.Database.EnsureCreated();
             ConnectDb.db.Persons.Load();
             DataContext = ConnectDb.db.Persons.Local.ToObservableCollection();
-            PersonsGrid.ItemsSource = ConnectDb.db.Persons.ToList();
         }
 
         private void Button_Click_AddPerson(object sender, RoutedEventArgs e)
@@ -46,7 +45,7 @@ namespace WpfAppDotNet.Views
             });
             ConnectDb.db.SaveChanges();
             FirstNameTextBox.Text = FirstNameTextBox.Text = BirthdayTextBox.Text = null;
-            PersonsGrid.ItemsSource = ConnectDb.db.Persons.ToList();
+            PersonsGrid.Items.Refresh();
         }
     }
 }
