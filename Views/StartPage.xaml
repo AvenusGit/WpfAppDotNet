@@ -14,7 +14,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <DataGrid x:Name="PersonsGrid"
-              AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя"
                                 Binding="{Binding FirstName}"/>
