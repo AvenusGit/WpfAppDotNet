@@ -13,7 +13,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <DataGrid x:Name="PersonsGrid"
+        <DataGrid x:Name="personsGrid"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding}">
             <DataGrid.Columns>
@@ -31,11 +31,11 @@
             Margin="10"
             MinWidth="80">
             <TextBlock Text="FirstName"/>
-            <TextBox x:Name="FirstNameTextBox"/>
+            <TextBox x:Name="firstNameTextBox"/>
             <TextBlock Text="LastName"/>
-            <TextBox x:Name="LastNameTextBox"/>
+            <TextBox x:Name="lastNameTextBox"/>
             <TextBlock Text="Birthday"/>
-            <TextBox x:Name="BirthdayTextBox"/>
+            <TextBox x:Name="birthdayTextBox"/>
             <Button Content="AddPercon"
                     Click="Button_Click_AddPerson"/>
         </StackPanel>

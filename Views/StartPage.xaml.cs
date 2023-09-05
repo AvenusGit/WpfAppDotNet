@@ -39,13 +39,13 @@ namespace WpfAppDotNet.Views
         {
             ConnectDb.db.Persons.Add(new Person
             {
-                FirstName = FirstNameTextBox.Text,
-                LastName = LastNameTextBox.Text,
-                Birthday = DateTime.Parse(BirthdayTextBox.Text)
+                FirstName = firstNameTextBox.Text,
+                LastName = lastNameTextBox.Text,
+                Birthday = DateTime.Parse(birthdayTextBox.Text)
             });
             ConnectDb.db.SaveChanges();
-            FirstNameTextBox.Text = FirstNameTextBox.Text = BirthdayTextBox.Text = null;
-            PersonsGrid.Items.Refresh();
+            firstNameTextBox.Text = firstNameTextBox.Text = birthdayTextBox.Text = null;
+            personsGrid.Items.Refresh();
         }
     }
 }
